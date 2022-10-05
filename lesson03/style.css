@@ -15,6 +15,47 @@ body {
     align-items: center;    
 }
 
+.fixed-area {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0,0,0, 0.5);
+}
+
+.basket-card {
+    width: 80%;
+    height: 80%;
+    background-color: white;
+    display: grid;
+    grid-template-rows: max-content auto;
+}
+
+.basket-card__header {
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: auto max-content;
+}
+
+.basket-card__header__title {
+    padding: 10px
+}
+
+.basket-card__header__delete-icon {
+    background-image: url("img/delete_icon.png");
+    background-size: contain;
+    width: 30px;
+    height: 30px;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.basket-card__content {
+    padding: 10px;
+}
+
 .container {
     max-width: 1140px;
     margin: 0 auto;
@@ -58,4 +99,11 @@ body {
     border: 2px solid #1b1a1a;
     width: 100px;
     height: 100px;
+}
+
+.info_wind {
+    font-size: 30px;
+    font-weight: 500;
+    color: red;
+    text-align: center;
 }
