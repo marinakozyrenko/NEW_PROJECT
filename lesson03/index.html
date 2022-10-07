@@ -6,19 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>eShop</title>  
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.8"></script>
+    <script src="script.js"></script>
     </head>
 <body>
     <div id="root">
         <header>
             <div class="header">
-                <div class="header_title">Интернет магазин</div>
-                <input type="text" class="goods-search" v-model="search"/>
-                <button class="cart-button" type="button" @click="setVisibleCard">Корзина</button>
+                <h1 class="header_title">Интернет магазин</h1>
+                <div class="search">
+                    <search-component v-model="search"></search-component>
+                    <custom-button v-on:click="filterItems">Искать</custom-button>
+                </div>
+                <div class="actions">
+                    <custom-button v-on:click="setVisibleCard">Корзина</custom-button>
+                </div>
         </header>
         <main>
             <div class="container">
                 <div class="goods-list">
-                    <div class="goods-item" v-for="item in filteredItems">
+                    <div class="goods-item" v-for="item in filteredItems" :item="item">
                         <h3>{{ item.product_name }}</h3>
                         <p>{{ item.price }}</p>
                     </div>
@@ -28,17 +35,7 @@
             <div>{{search}}</div>
             <div class="info_wind" v-if="!filteredItems.length">нет данных</div>
         </main>
-        <div class="fixed-area" v-if="isVisibleCart">
-            <div class="basket-card">
-                <div class="basket-card__header">
-                    <h1 class="basket-card__header__title">Корзина</h1>
-                    <div class="basket-card__header__delete-icon" @click="setVisibleCard"></div>
-                </div>
-                <div class="basket-card__content">Информация</div>
-            </div>
-        </div>
+        <basket v-if="isVisibleCart" v-on:closeclick="setVisibleCard"></basket>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.8"></script>
-    <script src="script.js"></script>
-</body>
+    </body>
 </html>
